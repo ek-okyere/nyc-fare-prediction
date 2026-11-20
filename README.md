@@ -26,17 +26,20 @@ The large raw trip-record dataset and model-training notebooks are **not include
 
 ## Models and evaluation
 
-Five regression approaches were evaluated on the same held-out test set. Root Mean Squared Error (RMSE) was the main model-selection metric, supported by Mean Absolute Error (MAE) and R-squared (R²).
+Five regression model families were evaluated on the same held-out test set. Root Mean Squared Error (RMSE) was the main model-selection metric, supported by Mean Absolute Error (MAE) and R-squared (R²). The table includes an additional LightGBM result at 5 million training records to show the comparison with other ensemble models at a common sample size.
 
 | Model | Training records | Test RMSE (USD) | Test MAE (USD) | Test R² |
 | --- | ---: | ---: | ---: | ---: |
-| **LightGBM** | **7,000,000** | **9.80** | **5.25** | **0.8506** |
+| **LightGBM (final model)** | **7,000,000** | **9.80** | **5.25** | **0.8506** |
+| LightGBM (5-million comparison) | 5,000,000 | 9.83 | 5.26 | 0.8496 |
 | Random Forest | 5,000,000 | 9.93 | 5.40 | 0.8467 |
 | XGBoost | 5,000,000 | 9.93 | 5.30 | 0.8467 |
 | CatBoost | 5,000,000 | 10.05 | 5.37 | 0.8430 |
 | Linear Regression | 84,745,747 | 10.61 | 6.13 | 0.8248 |
 
-**LightGBM achieved the lowest test RMSE.** It was selected for the interactive prototype. Training sample sizes differ because of computational constraints; in an additional comparison using 5 million training records per ensemble model, LightGBM also achieved a lower RMSE than Random Forest and XGBoost.
+**Why 7 million training records?** At the common training size of 5 million records, LightGBM already had a lower test RMSE (USD 9.8333) than Random Forest (USD 9.9261) and XGBoost (USD 9.9277). Increasing the LightGBM training size to 7 million further reduced test RMSE to USD 9.8007, reduced MAE from USD 5.2565 to USD 5.2535, and increased R² from 0.8496 to 0.8506. The improvement was modest, but the 7-million-record version was retained as the final model for the interactive prototype.
+
+The additional 5-million LightGBM row is the common-size sensitivity comparison reported in Table 4.12 of the research, while the 7-million result is the selected final model reported in Table 4.15. The table therefore shows **five model families and six evaluated configurations**, not six different algorithms. Training sample sizes differed because of computational constraints.
 
 These metrics describe the historical held-out test set. They do not guarantee accuracy for future periods or markets.
 
