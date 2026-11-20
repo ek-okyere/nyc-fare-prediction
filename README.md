@@ -1,10 +1,14 @@
 # NYC Ride-Hailing Fare Prediction and Explainable Decision Support
 
-**An interactive machine learning prototype for estimating base passenger fares for Uber and Lyft trips in New York City (NYC).**
+**By Emmanuel Kwame Okyere | MSc Business Analytics, University of Ghana Business School**
 
-**Live application:** https://nyc-fare-prediction.streamlit.app/
+**Research title:** Developing an Interactive Machine Learning Framework for Passenger Fare Prediction and Pricing Decision Support in U.S. Ride-Hailing Platforms.
 
-Developed by Emmanuel Kwame Okyere as part of an MSc Business Analytics (Financial Analytics) research project at the University of Ghana Business School.
+A machine learning research prototype for **New York City (NYC) ride-hailing fare prediction**, using public **NYC TLC HVFHV Uber and Lyft trip records**, five regression model families, **LightGBM**, **SHAP explainable AI**, and **Streamlit**.
+
+**Live application:** https://nyc-fare-prediction.streamlit.app/  
+**Source code:** https://github.com/ek-okyere/nyc-fare-prediction  
+**Author profile:** https://www.linkedin.com/in/ekokyere
 
 ## Project overview
 
@@ -125,7 +129,9 @@ The application loads the serialized model and Taxi Zone lookup from the reposit
 
 Python · pandas · NumPy · scikit-learn · LightGBM · SHAP · Streamlit · Matplotlib · joblib
 
-## Author
+## Citation and author
+
+The repository includes a [`CITATION.cff`](CITATION.cff) file with metadata for citing the software and its author. This code repository is a research prototype; it is **not** presented as a peer-reviewed journal publication.
 
 **Emmanuel Kwame Okyere**  
 MSc Business Analytics (Financial Analytics), University of Ghana Business School  
