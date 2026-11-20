@@ -20,13 +20,27 @@ The intended users are pricing analysts and business decision-makers. The applic
 - **Target:** `base_passenger_fare`, measured in USD. This is not the same as the complete amount ultimately paid by a passenger.
 - **Predictors used in the application:** trip distance (`trip_miles`), duration (`trip_time`), request month, request day of week, request hour, platform, pickup and drop-off Taxi Zone IDs, shared-ride request, wheelchair-accessible vehicle request, and Access-A-Ride flag.
 
+### Dataset size and training/test split
+
+The January-May 2026 source files contained **105,996,114 trip records**. After data cleaning, **105,932,184 records** were retained for analysis.
+
+The cleaned dataset was split once into a training pool and a held-out test set (80/20 split, `random_state=42`):
+
+| Dataset portion | Records | Purpose |
+| --- | ---: | --- |
+| Full cleaned dataset | **105,932,184** | Source for modelling |
+| Training pool (80%) | **84,745,747** | Source for fitting and training samples |
+| Held-out test set (20%) | **21,186,437** | Shared evaluation set for all models |
+
+**Important:** The 21,186,437 records were the **test set**, not the training size of every model. Linear Regression was fitted on the full training pool of 84,745,747 records. To manage computational requirements, the ensemble models were fitted on smaller samples taken from the training pool: 5 million records for Random Forest, XGBoost, and CatBoost; 5 million for the LightGBM sensitivity comparison; and 7 million for the final LightGBM model. **All reported test metrics were calculated on the same 21,186,437 held-out records.**
+
 The project involves data cleaning, exploratory analysis, feature engineering, model comparison, and interpretability. The fitted pipeline applies preprocessing to inputs before passing them to the LightGBM model. In the research modelling workflow, lower-cardinality categorical features are one-hot encoded, pickup and drop-off Taxi Zone IDs are target encoded, and distance and duration are retained as numerical features.
 
 The large raw trip-record dataset and model-training notebooks are **not included** in this repository. The application and its saved inference pipeline are provided here.
 
 ## Models and evaluation
 
-Five regression model families were evaluated on the same held-out test set. Root Mean Squared Error (RMSE) was the main model-selection metric, supported by Mean Absolute Error (MAE) and R-squared (R²). The table includes an additional LightGBM result at 5 million training records to show the comparison with other ensemble models at a common sample size.
+Five regression model families were evaluated on the same held-out test set of **21,186,437 records**. Root Mean Squared Error (RMSE) was the main model-selection metric, supported by Mean Absolute Error (MAE) and R-squared (R²). The table includes an additional LightGBM result at 5 million training records to show the comparison with other ensemble models at a common sample size.
 
 | Model | Training records | Test RMSE (USD) | Test MAE (USD) | Test R² |
 | --- | ---: | ---: | ---: | ---: |
