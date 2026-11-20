@@ -59,13 +59,21 @@ These metrics describe the historical held-out test set. They do not guarantee a
 
 ## Explainability with SHAP
 
-SHapley Additive exPlanations (SHAP) were used to interpret the selected LightGBM model:
+SHapley Additive exPlanations (SHAP) were used to explain the selected LightGBM model. The two figures below are original outputs from the research notebook, using held-out trip data.
 
-- At the overall model level, trip distance and trip duration were the most influential predictors, followed by pickup and drop-off locations.
-- For a single trip scenario, the application presents a SHAP waterfall chart and a table of predictor contributions in USD.
-- Contributions are grouped back to the user-facing predictors to make the explanation easier to read.
+### Global explanation - SHAP beeswarm
 
-SHAP shows how model inputs contribute to a prediction relative to a baseline. It does **not** establish that those inputs causally determine a fare.
+![Global SHAP beeswarm showing predictor contributions across held-out trips](assets/shap_beeswarm_global.png)
+
+*Each dot represents a trip in the SHAP sample. Its horizontal position shows how a feature contributes to the predicted fare, while colour indicates low (blue) or high (red) feature values. Trip distance and duration show the strongest overall effects; higher values generally push fare estimates upwards. The plotted names reflect the model's transformed inputs.*
+
+### Local explanation - SHAP waterfall
+
+![Local SHAP waterfall explaining one held-out passenger fare prediction](assets/shap_waterfall_local_trip.png)
+
+*For one held-out trip, the model estimates a base passenger fare of USD 25.52 (actual fare USD 26.08), compared with a SHAP baseline of approximately USD 27.20. Trip duration increases the estimate by about USD 7.07, while trip distance reduces it by about USD 5.59. Pickup and drop-off locations also reduce the estimate. The waterfall groups model contributions back to the original predictors.*
+
+**Interpretation:** SHAP describes predictive contributions relative to the model baseline. These plots do not establish causal effects or reproduce the ride-hailing platforms' internal pricing algorithms.
 
 ## Streamlit application
 
