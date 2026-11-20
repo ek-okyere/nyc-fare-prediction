@@ -15,7 +15,7 @@ The intended users are pricing analysts and business decision-makers. The applic
 ## Data and prediction target
 
 - **Source:** Public NYC Taxi and Limousine Commission (NYC TLC) High-Volume For-Hire Vehicle (HVFHV) trip records.
-- **Period:** January–May 2026.
+- **Period:** January-May 2026.
 - **Platforms:** Uber and Lyft.
 - **Target:** `base_passenger_fare`, measured in USD. This is not the same as the complete amount ultimately paid by a passenger.
 - **Predictors used in the application:** trip distance (`trip_miles`), duration (`trip_time`), request month, request day of week, request hour, platform, pickup and drop-off Taxi Zone IDs, shared-ride request, wheelchair-accessible vehicle request, and Access-A-Ride flag.
@@ -52,9 +52,9 @@ SHAP shows how model inputs contribute to a prediction relative to a baseline. I
 
 ## Streamlit application
 
-**Step 1 — Enter trip details.** Choose a request date/time (within the study period), Uber or Lyft, pickup/drop-off boroughs and Taxi Zones, distance, duration, and service-request flags.
+**Step 1 - Enter trip details.** Choose a request date/time (within the study period), Uber or Lyft, pickup/drop-off boroughs and Taxi Zones, distance, duration, and service-request flags.
 
-**Step 2 — Review the result.** The app displays the estimated **base passenger fare in USD**, a trip summary, a SHAP waterfall explanation, and a table of feature contributions. The SHAP chart can be downloaded as a PNG.
+**Step 2 - Review the result.** The app displays the estimated **base passenger fare in USD**, a trip summary, a SHAP waterfall explanation, and a table of feature contributions. The SHAP chart can be downloaded as a PNG.
 
 **Explore scenarios.** Use **Modify Trip Inputs** to change trip characteristics and generate another estimate. These are manual scenarios, not live platform quotations.
 
@@ -89,7 +89,7 @@ The application loads the serialized model and Taxi Zone lookup from the reposit
 
 ## Scope and limitations
 
-- The model was developed using NYC TLC HVFHV data from January–May 2026, and the application date input is restricted to that period.
+- The model was developed using NYC TLC HVFHV data from January-May 2026, and the application date input is restricted to that period.
 - Trip inputs are entered manually; the prototype is not connected to Uber, Lyft, live route services, or live pricing APIs.
 - Predictions are estimates of `base_passenger_fare`, not binding quotes or guaranteed final passenger charges.
 - Model explanations describe predictive associations, not causal effects.
