@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this repository's software, please cite it using the metadata in this file."
+type: software
+title: "NYC Ride-Hailing Fare Prediction and Explainable Decision Support"
+abstract: "Streamlit research prototype integrating a LightGBM regression pipeline and SHAP explanations for estimating base passenger fares using New York City TLC High-Volume For-Hire Vehicle trip data."
+authors:
+  - family-names: "Okyere"
+    given-names: "Emmanuel Kwame"
+repository-code: "https://github.com/ek-okyere/nyc-fare-prediction"
+url: "https://nyc-fare-prediction.streamlit.app/"
+keywords:
+  - "NYC TLC HVFHV"
+  - "ride-hailing"
+  - "fare prediction"
+  - "LightGBM"
+  - "SHAP"
+  - "explainable AI"
+  - "Streamlit"
